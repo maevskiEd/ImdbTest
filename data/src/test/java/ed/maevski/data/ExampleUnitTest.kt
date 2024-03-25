@@ -1,4 +1,4 @@
-package com.example.skeletonwithmodules
+package ed.maevski.data
 
 import org.junit.Test
 

@@ -1,10 +1,10 @@
-package com.example.skeletonwithmodules.di
+package ed.maevski.imdb.di
 
-import com.example.skeletonwithmodules.di.modules.AppModule
-import com.example.skeletonwithmodules.di.modules.DataModule
-import com.example.skeletonwithmodules.di.modules.DatabaseModule
-import com.example.skeletonwithmodules.di.modules.DomainModule
-import com.example.skeletonwithmodules.di.modules.RemoteModule
+import ed.maevski.imdb.di.modules.AppModule
+import ed.maevski.imdb.di.modules.DataModule
+import ed.maevski.imdb.di.modules.DatabaseModule
+import ed.maevski.imdb.di.modules.DomainModule
+import ed.maevski.imdb.di.modules.RemoteModule
 import dagger.Component
 import javax.inject.Singleton
 

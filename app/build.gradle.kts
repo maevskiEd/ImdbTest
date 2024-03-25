@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.skeletonwithmodules"
+    namespace = "ed.maevski.ImdbTest"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.skeletonwithmodules"
-        minSdk = 24
+        applicationId = "ed.maevski.ImdbTest"
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -77,6 +77,6 @@ dependencies {
     implementation ("androidx.fragment:fragment-ktx:1.6.2")
 
     //Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 }

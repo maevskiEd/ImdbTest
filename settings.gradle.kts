@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SkeletonWithModules"
+rootProject.name = "ImdbTest"
 include(":app")
 include(":data")
 include(":domain")

@@ -1,7 +1,8 @@
-package com.example.skeletonwithmodules
+package ed.maevski.imdb
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import ed.maevski.ImdbTest.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

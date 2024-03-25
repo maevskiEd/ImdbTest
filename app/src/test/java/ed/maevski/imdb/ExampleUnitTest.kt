@@ -1,4 +1,4 @@
-package com.example.data
+package ed.maevski.imdb
 
 import org.junit.Test
 

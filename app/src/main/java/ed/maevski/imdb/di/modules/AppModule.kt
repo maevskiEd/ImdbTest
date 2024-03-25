@@ -1,4 +1,4 @@
-package com.example.skeletonwithmodules.di.modules
+package ed.maevski.imdb.di.modules
 
 import android.content.Context
 import dagger.Module
