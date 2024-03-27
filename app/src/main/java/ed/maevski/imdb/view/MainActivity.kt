@@ -1,4 +1,4 @@
-package ed.maevski.imdb
+package ed.maevski.imdb.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
