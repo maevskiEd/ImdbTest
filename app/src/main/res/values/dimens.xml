@@ -10,17 +10,17 @@
 <!--    <dimen name="marginRightPoster">1dp</dimen>-->
 <!--    &lt;!&ndash;    Disclaimer&ndash;&gt;-->
 <!--    <dimen name="textSizeDisclaimer">16sp</dimen>-->
-    <!--    RecyclerView-->
+        RecyclerView
     <dimen name="marginsRV">4dp</dimen>
-<!--    &lt;!&ndash;    AppBar_Details&ndash;&gt;-->
-<!--    <dimen name="heightAppBar">200dp</dimen>-->
-<!--    &lt;!&ndash;    CollapsingToolbar&ndash;&gt;-->
-<!--    <dimen name="minHeightCollapsingToolbar">60dp</dimen>-->
-<!--    &lt;!&ndash;    FAB&ndash;&gt;-->
-<!--    <dimen name="marginsFAB">16dp</dimen>-->
-<!--    &lt;!&ndash;    details_description&ndash;&gt;-->
-<!--    <dimen name="marginsDetaildesc">8dp</dimen>-->
-    <!--    search-->
+    <!--    AppBar_Details-->
+    <dimen name="heightAppBar">400dp</dimen>
+    <!--    CollapsingToolbar-->
+    <dimen name="minHeightCollapsingToolbar">60dp</dimen>
+    <!--    FAB-->
+    <dimen name="marginsFAB">16dp</dimen>
+    <!--    details_description-->
+    <dimen name="marginsDetaildesc">8dp</dimen>
+        search
     <dimen name="marginsSearch">8dp</dimen>
 <!--    &lt;!&ndash;    favorites&ndash;&gt;-->
 <!--    <integer name="marginsFavorites">12</integer>-->

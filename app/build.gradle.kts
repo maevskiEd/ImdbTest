@@ -61,11 +61,18 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.15.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
 
-    //Dagger
-    implementation ("com.google.dagger:dagger:2.47")
-    implementation ("com.google.dagger:dagger-android-support:2.47")
-    kapt ("com.google.dagger:dagger-android-processor:2.47")
-    kapt ("com.google.dagger:dagger-compiler:2.47")
+//    //Dagger
+//    implementation ("com.google.dagger:dagger:2.47")
+//    implementation ("com.google.dagger:dagger-android-support:2.47")
+//    kapt ("com.google.dagger:dagger-android-processor:2.47")
+//    kapt ("com.google.dagger:dagger-compiler:2.47")
+
+    /** Dagger2 */
+    implementation("com.google.dagger:dagger:2.45")
+    implementation("com.google.dagger:dagger-android:2.45")
+    implementation("com.google.dagger:dagger-android-support:2.45")
+    kapt("com.google.dagger:dagger-compiler:2.45")
+    kapt("com.google.dagger:dagger-android-processor:2.45")
 
     //Room
     implementation ("androidx.room:room-runtime:2.6.1")
@@ -81,8 +88,8 @@ dependencies {
     implementation ("androidx.fragment:fragment-ktx:1.6.2")
 
     //Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
 
     //swiperefreshlayout
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")

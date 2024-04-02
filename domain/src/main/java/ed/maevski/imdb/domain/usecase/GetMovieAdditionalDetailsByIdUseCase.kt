@@ -3,8 +3,8 @@ package ed.maevski.imdb.domain.usecase
 import ed.maevski.imdb.domain.model.Movie
 import ed.maevski.imdb.domain.repositoryinterface.MoviesRepository
 
-class GetAllMoviesUseCase(
+class GetMovieAdditionalDetailsByIdUseCase(
     private val repository: MoviesRepository
 ) {
-    suspend fun execute(): List<Movie> = repository.getAllMovies()
+    suspend fun execute(movie: Movie): Movie = repository.getMovieAdditionalDetailsById(movie)
 }

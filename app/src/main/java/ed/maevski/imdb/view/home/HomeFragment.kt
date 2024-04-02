@@ -1,33 +1,46 @@
 package ed.maevski.imdb.view.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import dagger.android.support.AndroidSupportInjection
+import ed.maevski.ImdbTest.R
 import ed.maevski.ImdbTest.databinding.FragmentHomeBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class HomeFragment() : Fragment() {
+class HomeFragment : Fragment(),  HasAndroidInjector {
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-//    private lateinit var adapter: ArtRecyclerAdapter
-//    private lateinit var scopeHomeFragment: CoroutineScope
+    private lateinit var homeFragmentViewModel: HomeViewModel
 
-    private val homeFragmentViewModel: HomeViewModel by viewModels()
+    @Inject
+    lateinit var vmFactory: HomeViewModel.Factory
 
-/*    private var picturesDataBase = listOf<Item>()
-        //Используем backing field
-        set(value) {
-            //Если придет такое же значение, то мы выходим из метода
-            if (field == value) return
-            //Если пришло другое значение, то кладем его в переменную
-            field = value
-            //Обновляем RV адаптер
-            adapter.items = picturesDataBase
-        }*/
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+    override fun androidInjector(): AndroidInjector<Any> {
+        return androidInjector
+    }
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,49 +54,38 @@ class HomeFragment() : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
 
-//        homeFragmentViewModel.getDeviantArts()
-//        homeFragmentViewModel.picturesListData =
-//            homeFragmentViewModel.interactor.getDeviantPicturesFromDBWithCategory()
+        homeFragmentViewModel =
+            ViewModelProvider(this, vmFactory)[HomeViewModel::class.java]
 
-/*        adapter = PictureRecyclerAdapter(object : PictureRecyclerAdapter.OnItemClickListener {
-            override fun click(picture: DeviantPicture) {
-                Toast.makeText(requireContext(), picture.title, Toast.LENGTH_SHORT).show()
-                (requireActivity() as MainActivity).launchDetailsFragment(picture)
+        val adapter = MoviesRecyclerAdapter() { imdbid ->
+
+            // Обработка клика на элементе списка
+            println("HomeFragment: movie id $imdbid")
+
+
+            if (imdbid != null) {
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_detailsFragment,
+                    Bundle().apply {
+                        putString("imdbid", imdbid)
+                    })
+            } else {
+                println("HomeFragment: id = null")
             }
-        })*/
-
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {}
-            }
-        )
-
-        binding.searchView.setOnClickListener {
-            binding.searchView.isIconified = false
         }
 
+        binding.mainRecycler.adapter = adapter
+        binding.mainRecycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        initPullToRefresh()
-    }
-
-    private fun initPullToRefresh() {
-        //Вешаем слушатель, чтобы вызвался pull to refresh
-//        binding.pullToRefresh.setOnRefreshListener {
-//            //Чистим адаптер(items нужно будет сделать паблик или создать для этого публичный метод)
-////            adapter.items.
-///*            filmsAdapter.items.clear()*/
-//            //Делаем новый запрос фильмов на сервер
-//            homeFragmentViewModel.getDeviantArts()
-//            //Убираем крутящееся колечко
-//            binding.pullToRefresh.isRefreshing = false
-//        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-//        scopeHomeFragment.cancel()
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeFragmentViewModel.movieListFlow.collect {
+                withContext(Dispatchers.Main) {
+                    adapter.setData(it)
+//                    adapter.notifyDataSetChanged()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -91,7 +93,16 @@ class HomeFragment() : Fragment() {
         super.onDestroyView()
     }
 
-    companion object {
-        private const val POSITION_ONE = 1
-    }
+//    private fun initPullToRefresh() {
+//        //Вешаем слушатель, чтобы вызвался pull to refresh
+////        binding.pullToRefresh.setOnRefreshListener {
+////            //Чистим адаптер(items нужно будет сделать паблик или создать для этого публичный метод)
+//////            adapter.items.
+/////*            filmsAdapter.items.clear()*/
+////            //Делаем новый запрос фильмов на сервер
+////            homeFragmentViewModel.getDeviantArts()
+////            //Убираем крутящееся колечко
+////            binding.pullToRefresh.isRefreshing = false
+////        }
+//    }
 }

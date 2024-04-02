@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.data"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 23
@@ -54,4 +54,10 @@ dependencies {
     // decode token
     //    implementation ("com.auth0:java-jwt:3.18.1")
     implementation("io.github.nefilim.kjwt:kjwt-core:0.9.0")
+
+    //Dagger
+    implementation ("com.google.dagger:dagger:2.47")
+    implementation ("com.google.dagger:dagger-android-support:2.47")
+    kapt ("com.google.dagger:dagger-android-processor:2.47")
+    kapt ("com.google.dagger:dagger-compiler:2.47")
 }

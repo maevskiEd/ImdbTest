@@ -5,6 +5,9 @@ import ed.maevski.imdb.domain.model.Movie
 
 interface MoviesRepository {
 
-    fun getAllMovies(): List<Movie>
+    suspend fun getAllMovies(): List<Movie>
+    suspend fun getMovieDetailsById(imdbid: String): Movie
+    suspend fun getMovieAdditionalDetailsById(movie: Movie): Movie
+
 
 }
